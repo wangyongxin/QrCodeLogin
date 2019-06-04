@@ -95,7 +95,8 @@ class WebView: UIView {
             
         case .URLString(let urltring):
             let urlstr = URL(string: urltring)
-            let request = URLRequest(url: urlstr!)
+            let request = URLRequest.init(url: urlstr!, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
+//            let request = URLRequest(url: urlstr!)
             webView.load(request)
             
         case .HTMLName(let string):
@@ -133,6 +134,9 @@ class WebView: UIView {
         }
     }
     
+    public func getWebView() -> WKWebView{
+        return webView
+    }
     /// 刷新
     public func reload() {
         webView.reload()
